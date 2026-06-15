@@ -27,7 +27,7 @@
 	"danceEvery": 1,
 	"scale": 1,
 	"name": "Monday Dad",
-	"flipX": true,
+	"flipX": false,
 	"cameraOffsets": [
 		0,
 		0
