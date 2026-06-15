@@ -32,6 +32,11 @@ class MondayGirlCharacter extends MultiAnimateAtlasCharacter
 	function playComboAnimation(comboCount:Int)
 	{
 		if (this.comboNoteCounts.contains(comboCount))
+		{
+			if (comboCount < 100)
+				this.comboNoteCounts.remove(comboCount);
+
 			this.playAnimation('cheer', true, true);
+		}
 	}
 }
