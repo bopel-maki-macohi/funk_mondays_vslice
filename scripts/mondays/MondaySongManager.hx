@@ -6,8 +6,10 @@ import funkin.mobile.input.ControlsHandler;
 
 class MondaySongManager
 {
-	public static function middleScroll()
+	public static function songStuffs()
 	{
+		PlayState.instance.comboPopUps.offsets = [510, 320];
+
 		var opponentStrumline:FlxSprite = PlayState.instance.opponentStrumline;
 		if (opponentStrumline != null)
 		{

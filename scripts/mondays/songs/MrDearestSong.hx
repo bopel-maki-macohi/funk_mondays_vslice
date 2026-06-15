@@ -13,6 +13,6 @@ class MrDearestSong extends Song
 	public override function onCountdownStart(event:CountdownScriptEvent):Void
 	{
 		super.onCountdownStart(event);
-		MondaySongManager.middleScroll();
+		MondaySongManager.songStuffs();
 	}
 }
