@@ -1,10 +1,5 @@
-export/
-.haxelib/
-dump/
-
-.DS_Store
-
 **.asd
+**.fnf**
 
 dev/songs/**/**.ini
 dev/songs/**/**.wav
