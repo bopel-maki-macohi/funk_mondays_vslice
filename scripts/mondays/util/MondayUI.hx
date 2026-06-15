@@ -22,6 +22,9 @@ class MondayUI
 
 	public static function scoreUpdate()
 	{
+		if (missesText == null)
+			return;
+
 		missesText.text = 'Misses: ${Highscore.tallies.missed}';
 		missesText.x = FlxG.width - missesText.width - 8;
 		missesText.y = (!isDownscroll) ? FlxG.height - missesText.height - 8 : 8 + missesText.height;
@@ -30,7 +33,19 @@ class MondayUI
 		PlayState.instance.scoreText.y = (!isDownscroll) ? missesText.y - missesText.height : 8;
 	}
 
-	public static function uiInit(startCamOffsets:Array<Float>, zoomOffset:Float)
+	public static function camInit(startCamOffsets:Array<Float>, zoomOffset:Float)
+	{
+		var gfPoint = PlayState.instance.currentStage.getGirlfriend().cameraFocusPoint;
+
+		PlayState.instance.cameraFollowPoint.x = gfPoint.x + startCamOffsets[0];
+		PlayState.instance.cameraFollowPoint.y = gfPoint.y + startCamOffsets[1];
+		PlayState.instance.tweenCameraToFollowPoint(0);
+
+		PlayState.instance.currentCameraZoom = PlayState.instance.currentStage.camZoom + zoomOffset;
+		FlxG.camera.zoom = PlayState.instance.currentCameraZoom;
+	}
+
+	public static function uiInit()
 	{
 		PlayState.instance.healthBarBG.visible = false;
 		PlayState.instance.healthBar.visible = false;
@@ -45,15 +60,6 @@ class MondayUI
 
 		PlayState.instance.comboPopUps.offsets = [400, (isDownscroll) ? 350 : -200];
 		PlayState.instance.remove(PlayState.instance.comboPopUps);
-
-		var gfPoint = PlayState.instance.currentStage.getGirlfriend().cameraFocusPoint;
-
-		PlayState.instance.cameraFollowPoint.x = gfPoint.x + startCamOffsets[0];
-		PlayState.instance.cameraFollowPoint.y = gfPoint.y + startCamOffsets[1];
-		PlayState.instance.tweenCameraToFollowPoint(0);
-
-		PlayState.instance.currentCameraZoom = PlayState.instance.currentCameraZoom + zoomOffset;
-		FlxG.camera.zoom = PlayState.instance.currentCameraZoom;
 
 		var opponentStrumline:FlxSprite = PlayState.instance.opponentStrumline;
 		if (opponentStrumline != null)
@@ -71,13 +77,20 @@ class MondayUI
 			playerStrumline.x = FlxG.width / 2 - playerStrumline.width / 2;
 		}
 
+		if (missesText != null)
+		{
+			PlayState.instance.remove(missesText);
+			missesText.destroy();
+			missesText = null;
+		}
+
 		missesText = new FlxBitmapText(0, 0, '', FlxBitmapFont.fromAngelCode(Paths.font("vcr-bmp.png"), Paths.font("vcr-bmp.fnt")));
 		missesText.alignment = PlayState.instance.scoreText.alignment;
 		missesText.borderStyle = PlayState.instance.scoreText.borderStyle;
 		missesText.borderColor = PlayState.instance.scoreText.borderColor;
 		missesText.letterSpacing = PlayState.instance.scoreText.letterSpacing;
 		missesText.scrollFactor = PlayState.instance.scoreText.scrollFactor;
-		missesText.scale = PlayState.instance.scoreText.scale;
+		missesText.scale.set(2,2);
 		missesText.cameras = PlayState.instance.scoreText.cameras;
 		missesText.wordWrap = PlayState.instance.scoreText.wordWrap;
 		missesText.antialiasing = PlayState.instance.scoreText.antialiasing;
