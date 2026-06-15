@@ -10,7 +10,9 @@ class MondaySongManager
 	{
 		PlayState.instance.healthBarBG.visible = false;
 		PlayState.instance.healthBar.visible = false;
-		
+		PlayState.instance.iconP1.visible = false;
+		PlayState.instance.iconP2.visible = false;
+
 		PlayState.instance.comboPopUps.offsets = [510, 320];
 
 		var opponentStrumline:FlxSprite = PlayState.instance.opponentStrumline;
