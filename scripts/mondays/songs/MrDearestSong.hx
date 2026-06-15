@@ -4,7 +4,7 @@ class MrDearestSong extends MondaySong
 	{
 		super('mrdearest');
 
-		startCamOffsets = [0, -80];
+		startCamOffsets = [-50, -160];
 		startZoomOffset = -0.2;
 	}
 }
