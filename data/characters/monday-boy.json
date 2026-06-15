@@ -1,0 +1,205 @@
+{
+	"renderType": "multianimateatlas",
+	"offsets": [
+		0,
+		0
+	],
+	"applyStageMatrix": false,
+	"startingAnimation": "idle",
+	"death": {
+		"cameraOffsets": [
+			0,
+			0
+		]
+	},
+	"healthIcon": {
+		"offsets": [
+			0,
+			0
+		],
+		"id": "monday-boy",
+		"flipX": false,
+		"isPixel": false,
+		"scale": 1
+	},
+	"assetPath": "funk_mondays/characters/boy",
+	"version": "1.0.0",
+	"danceEvery": 1,
+	"scale": 1,
+	"name": "Monday Boy",
+	"flipX": true,
+	"cameraOffsets": [
+		0,
+		0
+	],
+	"isPixel": false,
+	"singTime": 8,
+	"atlasSettings": {
+		"applyStageMatrix": false,
+		"useRenderTexture": false,
+		"filterQuality": 1,
+		"cacheOnLoad": false,
+		"swfMode": true
+	},
+	"animations": [
+		{
+			"flipY": false,
+			"offsets": [
+				0,
+				0
+			],
+			"frameRate": 24,
+			"prefix": "Idle",
+			"animType": "framelabel",
+			"flipX": false,
+			"looped": false,
+			"name": "idle"
+		},
+		{
+			"flipY": false,
+			"offsets": [
+				0,
+				0
+			],
+			"frameRate": 24,
+			"prefix": "Left",
+			"animType": "framelabel",
+			"flipX": false,
+			"looped": false,
+			"name": "singLEFT"
+		},
+		{
+			"flipY": false,
+			"offsets": [
+				0,
+				0
+			],
+			"frameRate": 24,
+			"prefix": "Down",
+			"animType": "framelabel",
+			"flipX": false,
+			"looped": false,
+			"name": "singDOWN"
+		},
+		{
+			"flipY": false,
+			"offsets": [
+				0,
+				0
+			],
+			"frameRate": 24,
+			"prefix": "Up",
+			"animType": "framelabel",
+			"flipX": false,
+			"looped": false,
+			"name": "singUP"
+		},
+		{
+			"flipY": false,
+			"offsets": [
+				0,
+				0
+			],
+			"frameRate": 24,
+			"prefix": "Right",
+			"animType": "framelabel",
+			"flipX": false,
+			"looped": false,
+			"name": "singRIGHT"
+		},
+		{
+			"flipY": false,
+			"offsets": [
+				0,
+				0
+			],
+			"frameRate": 24,
+			"prefix": "Left Miss",
+			"animType": "framelabel",
+			"flipX": false,
+			"looped": false,
+			"name": "singLEFTmiss"
+		},
+		{
+			"flipY": false,
+			"offsets": [
+				0,
+				0
+			],
+			"frameRate": 24,
+			"prefix": "Down Miss",
+			"animType": "framelabel",
+			"flipX": false,
+			"looped": false,
+			"name": "singDOWNmiss"
+		},
+		{
+			"flipY": false,
+			"offsets": [
+				0,
+				0
+			],
+			"frameRate": 24,
+			"prefix": "Up Miss",
+			"animType": "framelabel",
+			"flipX": false,
+			"looped": false,
+			"name": "singUPmiss"
+		},
+		{
+			"flipY": false,
+			"offsets": [
+				0,
+				0
+			],
+			"frameRate": 24,
+			"prefix": "Right Miss",
+			"animType": "framelabel",
+			"flipX": false,
+			"looped": false,
+			"name": "singRIGHTmiss"
+		},
+		{
+			"flipY": false,
+			"offsets": [
+				-8,
+				5
+			],
+			"frameRate": 24,
+			"prefix": "firstDeath",
+			"animType": "framelabel",
+			"flipX": false,
+			"looped": false,
+			"name": "firstDeath"
+		},
+		{
+			"offsets": [
+				-8,
+				5
+			],
+			"prefix": "firstDeath",
+			"frameIndices": [
+				23
+			],
+			"animType": "framelabel",
+			"flipX": false,
+			"name": "deathLoop",
+			"looped": true,
+			"flipY": false,
+			"frameRate": 24
+		},
+		{
+			"flipY": false,
+			"offsets": [
+				-8,
+				5
+			],
+			"frameRate": 24,
+			"prefix": "Death Confirm",
+			"animType": "framelabel",
+			"flipX": false,
+			"looped": false,
+			"name": "deathConfirm"
+		}
+	]
+}

@@ -6,3 +6,5 @@ dev/songs/**/**.wav
 dev/songs/**/**.ogg
 dev/songs/**/Backup/**/**
 dev/songs/**/Ableton Project Info/**/**
+
+RECOVER_**.fla
