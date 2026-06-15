@@ -2,7 +2,6 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import funkin.play.PlayState;
 import funkin.mobile.input.ControlsHandler;
-
 #if mobile
 import funkin.mobile.ui.FunkinHitbox.FunkinHitboxControlSchemes;
 #end
@@ -10,20 +9,19 @@ import funkin.mobile.ui.FunkinHitbox.FunkinHitboxControlSchemes;
 class MondayUI
 {
 	public static var isDownscroll(get, never):Bool;
-	
-	static function get_isDownscroll():Bool {
-		return #if mobile (Preferences.controlsScheme == Arrows
-			&& !ControlsHandler.hasExternalInputDevice)
-			|| #end Preferences.downscroll;
+
+	static function get_isDownscroll():Bool
+	{
+		return #if mobile (Preferences.controlsScheme == Arrows && !ControlsHandler.hasExternalInputDevice) || #end Preferences.downscroll;
 	}
-	
+
 	public static function scoreUpdate()
 	{
 		PlayState.instance.scoreText.screenCenter();
 		PlayState.instance.scoreText.y = (isDownscroll) ? FlxG.height - PlayState.instance.scoreText.height - 8 : 8;
 	}
 
-	public static function uiInit()
+	public static function uiInit(startCamOffsets:Array<Float>, zoomOffset:Float)
 	{
 		PlayState.instance.healthBarBG.visible = false;
 		PlayState.instance.healthBar.visible = false;
@@ -37,6 +35,15 @@ class MondayUI
 		// PlayState.instance.scoreText.borderSize *= 2;
 
 		PlayState.instance.comboPopUps.offsets = [400, (isDownscroll) ? 350 : -200];
+
+		var gfPoint = PlayState.instance.currentStage.getGirlfriend().cameraFocusPoint;
+
+		PlayState.instance.cameraFollowPoint.x = gfPoint.x + startCamOffsets[0];
+		PlayState.instance.cameraFollowPoint.y = gfPoint.y + startCamOffsets[1];
+		PlayState.instance.tweenCameraToFollowPoint(0);
+
+		PlayState.instance.currentCameraZoom = PlayState.instance.currentCameraZoom + zoomOffset;
+		FlxG.camera.zoom = PlayState.instance.currentCameraZoom;
 
 		var opponentStrumline:FlxSprite = PlayState.instance.opponentStrumline;
 		if (opponentStrumline != null)

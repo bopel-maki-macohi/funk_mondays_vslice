@@ -3,10 +3,13 @@ import funkin.play.PlayState;
 
 class MondaySong extends Song
 {
+	var startCamOffsets:Array<Float> = [];
+	var startZoomOffset:Float = 0.0;
+
 	public override function onCountdownStart(event:CountdownScriptEvent):Void
 	{
 		super.onCountdownStart(event);
-		MondayUI.uiInit();
+		MondayUI.uiInit(startCamOffsets, startZoomOffset);
 	}
 
 	override public function onUpdate(elapsed)
