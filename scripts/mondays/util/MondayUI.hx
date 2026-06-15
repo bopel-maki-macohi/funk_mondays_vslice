@@ -71,20 +71,18 @@ class MondayUI
 			playerStrumline.x = FlxG.width / 2 - playerStrumline.width / 2;
 		}
 
-		if (missesText == null)
-		{
-			missesText = new FlxBitmapText(0, 0, '', FlxBitmapFont.fromAngelCode(Paths.font("vcr-bmp.png"), Paths.font("vcr-bmp.fnt")));
-			missesText.alignment = PlayState.instance.scoreText.alignment;
-			missesText.borderStyle = PlayState.instance.scoreText.borderStyle;
-			missesText.borderColor = PlayState.instance.scoreText.borderColor;
-			missesText.letterSpacing = PlayState.instance.scoreText.letterSpacing;
-			missesText.scrollFactor = PlayState.instance.scoreText.scrollFactor;
-			missesText.scale = PlayState.instance.scoreText.scale;
-			missesText.cameras = PlayState.instance.scoreText.cameras;
-			missesText.wordWrap	 = PlayState.instance.scoreText.wordWrap;
-			missesText.antialiasing	 = PlayState.instance.scoreText.antialiasing;
-			missesText.zIndex = PlayState.instance.scoreText.zIndex + 1;
-		}
+		missesText = new FlxBitmapText(0, 0, '', FlxBitmapFont.fromAngelCode(Paths.font("vcr-bmp.png"), Paths.font("vcr-bmp.fnt")));
+		missesText.alignment = PlayState.instance.scoreText.alignment;
+		missesText.borderStyle = PlayState.instance.scoreText.borderStyle;
+		missesText.borderColor = PlayState.instance.scoreText.borderColor;
+		missesText.letterSpacing = PlayState.instance.scoreText.letterSpacing;
+		missesText.scrollFactor = PlayState.instance.scoreText.scrollFactor;
+		missesText.scale = PlayState.instance.scoreText.scale;
+		missesText.cameras = PlayState.instance.scoreText.cameras;
+		missesText.wordWrap = PlayState.instance.scoreText.wordWrap;
+		missesText.antialiasing = PlayState.instance.scoreText.antialiasing;
+		missesText.zIndex = PlayState.instance.scoreText.zIndex + 1;
+
 		PlayState.instance.add(missesText);
 		PlayState.instance.refresh();
 	}
