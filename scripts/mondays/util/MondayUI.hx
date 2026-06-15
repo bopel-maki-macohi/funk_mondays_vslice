@@ -17,8 +17,8 @@ class MondayUI
 
 	public static function scoreUpdate()
 	{
-		PlayState.instance.scoreText.screenCenter();
-		PlayState.instance.scoreText.y = (isDownscroll) ? FlxG.height - PlayState.instance.scoreText.height - 8 : 8;
+		PlayState.instance.scoreText.x = FlxG.width - PlayState.instance.scoreText.width - 8;
+		PlayState.instance.scoreText.y = (!isDownscroll) ? FlxG.height - PlayState.instance.scoreText.height : 8;
 	}
 
 	public static function uiInit(startCamOffsets:Array<Float>, zoomOffset:Float)
