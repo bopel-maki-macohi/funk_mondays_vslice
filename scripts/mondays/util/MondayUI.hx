@@ -5,10 +5,15 @@ import funkin.mobile.input.ControlsHandler;
 #if mobile
 import funkin.mobile.ui.FunkinHitbox.FunkinHitboxControlSchemes;
 #end
+import funkin.Highscore;
+import flixel.text.FlxBitmapText;
+import flixel.text.FlxBitmapFont;
 
 class MondayUI
 {
 	public static var isDownscroll(get, never):Bool;
+
+	public static var missesText:FlxBitmapText = null;
 
 	static function get_isDownscroll():Bool
 	{
@@ -17,8 +22,12 @@ class MondayUI
 
 	public static function scoreUpdate()
 	{
+		missesText.text = 'Misses: ${Highscore.tallies.missed}';
+		missesText.x = FlxG.width - missesText.width - 8;
+		missesText.y = (!isDownscroll) ? FlxG.height - missesText.height - 8 : 8 + missesText.height;
+
 		PlayState.instance.scoreText.x = FlxG.width - PlayState.instance.scoreText.width - 8;
-		PlayState.instance.scoreText.y = (!isDownscroll) ? FlxG.height - PlayState.instance.scoreText.height : 8;
+		PlayState.instance.scoreText.y = (!isDownscroll) ? missesText.y - missesText.height : 8;
 	}
 
 	public static function uiInit(startCamOffsets:Array<Float>, zoomOffset:Float)
@@ -61,5 +70,22 @@ class MondayUI
 		{
 			playerStrumline.x = FlxG.width / 2 - playerStrumline.width / 2;
 		}
+
+		if (missesText == null)
+		{
+			missesText = new FlxBitmapText(0, 0, '', FlxBitmapFont.fromAngelCode(Paths.font("vcr-bmp.png"), Paths.font("vcr-bmp.fnt")));
+			missesText.alignment = PlayState.instance.scoreText.alignment;
+			missesText.borderStyle = PlayState.instance.scoreText.borderStyle;
+			missesText.borderColor = PlayState.instance.scoreText.borderColor;
+			missesText.letterSpacing = PlayState.instance.scoreText.letterSpacing;
+			missesText.scrollFactor = PlayState.instance.scoreText.scrollFactor;
+			missesText.scale = PlayState.instance.scoreText.scale;
+			missesText.cameras = PlayState.instance.scoreText.cameras;
+			missesText.wordWrap	 = PlayState.instance.scoreText.wordWrap;
+			missesText.antialiasing	 = PlayState.instance.scoreText.antialiasing;
+			missesText.zIndex = PlayState.instance.scoreText.zIndex + 1;
+		}
+		PlayState.instance.add(missesText);
+		PlayState.instance.refresh();
 	}
 }
