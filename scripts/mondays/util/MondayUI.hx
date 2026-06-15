@@ -35,22 +35,29 @@ class MondayUI
 
 	public static function camInit(startCamOffsets:Array<Float>, zoomOffset:Float)
 	{
-		var gfPoint = PlayState.instance.currentStage.getGirlfriend().cameraFocusPoint;
+		if (PlayState.instance.currentStage != null)
+		{
+			var gfPoint = PlayState.instance.currentStage.getGirlfriend().cameraFocusPoint;
 
-		PlayState.instance.cameraFollowPoint.x = gfPoint.x + startCamOffsets[0];
-		PlayState.instance.cameraFollowPoint.y = gfPoint.y + startCamOffsets[1];
-		PlayState.instance.tweenCameraToFollowPoint(0);
+			PlayState.instance.cameraFollowPoint.x = gfPoint.x + startCamOffsets[0];
+			PlayState.instance.cameraFollowPoint.y = gfPoint.y + startCamOffsets[1];
+			PlayState.instance.tweenCameraToFollowPoint(0);
 
-		PlayState.instance.currentCameraZoom = PlayState.instance.currentStage.camZoom + zoomOffset;
-		FlxG.camera.zoom = PlayState.instance.currentCameraZoom;
+			PlayState.instance.currentCameraZoom = PlayState.instance.currentStage.camZoom + zoomOffset;
+			FlxG.camera.zoom = PlayState.instance.currentCameraZoom;
+		}
 	}
 
 	public static function uiInit()
 	{
 		PlayState.instance.healthBarBG.visible = false;
 		PlayState.instance.healthBar.visible = false;
-		PlayState.instance.iconP1.visible = false;
-		PlayState.instance.iconP2.visible = false;
+		
+		if (PlayState.instance.iconP1 != null)
+			PlayState.instance.iconP1.visible = false;
+		
+		if (PlayState.instance.iconP2 != null)
+			PlayState.instance.iconP2.visible = false;
 
 		PlayState.instance.scoreText.zIndex *= 2;
 
@@ -90,7 +97,7 @@ class MondayUI
 		missesText.borderColor = PlayState.instance.scoreText.borderColor;
 		missesText.letterSpacing = PlayState.instance.scoreText.letterSpacing;
 		missesText.scrollFactor = PlayState.instance.scoreText.scrollFactor;
-		missesText.scale.set(2,2);
+		missesText.scale.set(2, 2);
 		missesText.cameras = PlayState.instance.scoreText.cameras;
 		missesText.wordWrap = PlayState.instance.scoreText.wordWrap;
 		missesText.antialiasing = PlayState.instance.scoreText.antialiasing;
