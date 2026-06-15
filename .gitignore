@@ -1,0 +1,13 @@
+export/
+.haxelib/
+dump/
+
+.DS_Store
+
+**.asd
+
+dev/songs/**/**.ini
+dev/songs/**/**.wav
+dev/songs/**/**.ogg
+dev/songs/**/Backup/**/**
+dev/songs/**/Ableton Project Info/**/**
