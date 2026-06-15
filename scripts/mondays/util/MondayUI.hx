@@ -30,11 +30,12 @@ class MondayUI
 
 		PlayState.instance.scoreText.zIndex *= 2;
 
-		// PlayState.instance.scoreText.antialiasing = false;
+		PlayState.instance.scoreText.antialiasing = false;
 		PlayState.instance.scoreText.scale.set(2, 2);
 		// PlayState.instance.scoreText.borderSize *= 2;
 
 		PlayState.instance.comboPopUps.offsets = [400, (isDownscroll) ? 350 : -200];
+		PlayState.instance.remove(PlayState.instance.comboPopUps);
 
 		var gfPoint = PlayState.instance.currentStage.getGirlfriend().cameraFocusPoint;
 
