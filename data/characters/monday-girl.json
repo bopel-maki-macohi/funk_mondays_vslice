@@ -1,0 +1,85 @@
+{
+	"renderType": "multianimateatlas",
+	"offsets": [
+		0,
+		0
+	],
+	"applyStageMatrix": false,
+	"startingAnimation": "idle",
+	"death": {
+		"cameraOffsets": [
+			0,
+			0
+		]
+	},
+	"healthIcon": {
+		"offsets": [
+			0,
+			0
+		],
+		"id": "monday-girl",
+		"flipX": false,
+		"isPixel": false,
+		"scale": 1
+	},
+	"assetPath": "funk_mondays/characters/girl",
+	"version": "1.0.0",
+	"danceEvery": 1,
+	"scale": 1,
+	"name": "Monday Girl",
+	"flipX": false,
+	"cameraOffsets": [
+		0,
+		0
+	],
+	"isPixel": false,
+	"singTime": 8,
+	"atlasSettings": {
+		"applyStageMatrix": false,
+		"useRenderTexture": false,
+		"filterQuality": 1,
+		"cacheOnLoad": false,
+		"swfMode": true
+	},
+	"animations": [
+		{
+			"flipY": false,
+			"offsets": [
+				0,
+				0
+			],
+			"frameRate": 24,
+			"prefix": "idle",
+			"animType": "framelabel",
+			"flipX": false,
+			"looped": false,
+			"name": "idle"
+		},
+		{
+			"flipY": false,
+			"offsets": [
+				0,
+				0
+			],
+			"frameRate": 24,
+			"prefix": "cheer",
+			"animType": "framelabel",
+			"flipX": false,
+			"looped": false,
+			"name": "cheer"
+		},
+		{
+			"flipY": false,
+			"offsets": [
+				0,
+				0
+			],
+			"frameRate": 24,
+			"prefix": "cheer",
+			"animType": "framelabel",
+			"flipX": false,
+			"looped": false,
+			"name": "combo10"
+		}
+	]
+}
