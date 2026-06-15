@@ -1,0 +1,28 @@
+--library flixel
+--library flixel-addons
+
+--library flixel-animate
+
+--library haxeui-core
+--library haxeui-flixel
+
+--library polymod
+--library json2object
+--library jsonpath
+--library jsonpatch
+--library thx.core
+--library thx.semver
+
+--library hxvlc
+
+# --library hxdiscord_rpc
+# --library newgrounds
+
+--library funkin.vis
+--library grig.audio
+
+--library FlxPartialSound
+
+--library funkin
+
+--class-path scripts

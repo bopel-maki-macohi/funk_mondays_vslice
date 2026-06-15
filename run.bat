@@ -1,0 +1,1 @@
+cd ../../ && cls && funkin && cd mods/funk_mondays
