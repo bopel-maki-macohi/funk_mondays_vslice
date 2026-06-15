@@ -1,0 +1,21 @@
+{
+  "version": "1.0.0",
+  "name": "Mondays am I right",
+  "titleAsset": "funk_mondays/weeks/monday",
+  "props": [
+    {
+      "assetPath": "storymenu/props/bf",
+      "scale": 0,
+      "danceEvery": 0,
+      "offsets": [
+        0,
+        0
+      ],
+      "animations": []
+    }
+  ],
+  "background": "#FFFFFF",
+  "songs": [
+    "mrdearest"
+  ]
+}

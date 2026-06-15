@@ -1,0 +1,42 @@
+{
+    "version": "2.2.4",
+    "songName": "MrDearest",
+    "artist": "Maki",
+    "charter": "Maki",
+    "offsets": {},
+    "playData": {
+        "difficulties": [
+            "hard"
+        ],
+        "characters": {
+            "player": "monday-boy",
+            "girlfriend": "monday-girl",
+            "opponent": "monday-dad",
+            "opponentVocals": [],
+            "playerVocals": []
+        },
+        "stage": "monday-void",
+        "noteStyle": "funkin",
+        "ratings": {
+            "easy": 0,
+            "normal": 0,
+            "hard": 2
+        },
+        "previewEnd": 0,
+        "album": "monday"
+    },
+    "generatedBy": "Friday Night Funkin' - v0.8.4",
+    "timeChanges": [
+        {
+            "t": 0,
+            "b": 0,
+            "bpm": 120,
+            "bt": [
+                4,
+                4,
+                4,
+                4
+            ]
+        }
+    ]
+}

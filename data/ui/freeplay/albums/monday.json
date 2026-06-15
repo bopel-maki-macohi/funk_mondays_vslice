@@ -1,0 +1,10 @@
+{
+  "version": "1.0.0",
+  "name": "Monday",
+  "artists": [
+    "Maki"
+  ],
+  "albumArtAsset": "funk_mondays/freeplay/albumCover",
+  "albumTitleAsset": "funk_mondays/freeplay/albumText",
+  "albumTitleOffsets": [9000, 0]
+}

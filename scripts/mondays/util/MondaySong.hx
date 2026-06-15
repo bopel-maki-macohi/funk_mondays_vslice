@@ -1,5 +1,6 @@
 package scripts.mondays.util;
 
+import funkin.save.Save;
 import funkin.play.song.Song;
 import funkin.play.PlayState;
 
@@ -20,7 +21,7 @@ class MondaySong extends Song
 	function reinitCamOffsets()
 	{
 		initCamOffsets = true;
-		
+
 		startCamOffsets = [0, 0];
 		startZoomOffset = 0;
 	}
