@@ -1,6 +1,3 @@
-package mods.funk_mondays.scripts.mondays.songs;
-
-import mondays.MondayUI;
 import funkin.play.song.Song;
 import funkin.play.PlayState;
 
@@ -16,5 +13,10 @@ class MondaySong extends Song
 	{
 		super.onUpdate(elapsed);
 		MondayUI.scoreUpdate();
+	}
+
+	public override function isSongNew(currentDifficulty:String, currentVariation:String):Bool
+	{
+		return !Save.instance.hasBeatenSong(this.id, null, this.variation);
 	}
 }

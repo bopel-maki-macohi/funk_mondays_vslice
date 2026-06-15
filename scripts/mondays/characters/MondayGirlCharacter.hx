@@ -1,5 +1,3 @@
-package mondays.characters;
-
 import funkin.play.character.MultiAnimateAtlasCharacter;
 
 class MondayGirlCharacter extends MultiAnimateAtlasCharacter
