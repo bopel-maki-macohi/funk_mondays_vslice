@@ -1,3 +1,4 @@
+import funkin.Conductor;
 import funkin.audio.FunkinSound;
 import funkin.graphics.FunkinSprite;
 import funkin.ui.freeplay.dj.AnimateAtlasFreeplayDJ;
@@ -33,6 +34,16 @@ class MondayBoyfriendFreeplayDJ extends AnimateAtlasFreeplayDJ
 
 		speakerX = speaker.x;
 		speakerY = FlxG.height - speaker.height;
+
+		Conductor.instance.onBeatHit.add(onBeatHit);
+	}
+
+	function onBeatHit()
+	{
+		var beat = Conductor.instance.currentBeat;
+
+		if (currentState == FreeplayDJState.Idle)
+			animation.play(playableCharData?.getAnimationPrefix('idle'));
 	}
 
 	function onFrameChange(anim:String, frame:Int)
@@ -59,8 +70,6 @@ class MondayBoyfriendFreeplayDJ extends AnimateAtlasFreeplayDJ
 			// 	currentState = FreeplayDJState.IdleEasterEgg;
 			// else if (timeIdling >= IDLE_CARTOON_PERIOD)
 			// 	currentState = FreeplayDJState.Cartoon;
-			// else
-			animation.play(playableCharData?.getAnimationPrefix('idle'));
 		}
 		else if (name == playableCharData?.getAnimationPrefix('confirm'))
 		{
