@@ -3,6 +3,7 @@
 - Added Assassination song
 - Monday Boy now is his own player
 
+- All songs now have the full song as the intrumental preview
 - All songs are normal only now instead of hard only
 - Fixed Spooky Down South album
 - Re-exported Boy Atlas with Better Texture Atlas
