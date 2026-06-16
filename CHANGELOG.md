@@ -1,5 +1,7 @@
 # 0.2.0 (6/16/2026)
 
+- Added Assassination song
+
 - Fixed Spooky Down South album
 - Re-exported Boy Atlas with Better Texture Atlas
 - Fixed Boy right miss animation
