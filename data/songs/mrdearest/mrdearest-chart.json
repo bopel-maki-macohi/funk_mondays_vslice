@@ -1,11 +1,11 @@
 {
     "version": "2.0.0",
     "scrollSpeed": {
-        "hard": 2.6
+        "normal": 2.6
     },
     "events": [],
     "notes": {
-        "hard": [
+        "normal": [
             {
                 "t": 0,
                 "d": 3

@@ -6,7 +6,7 @@
     "offsets": {},
     "playData": {
         "difficulties": [
-            "hard"
+            "normal"
         ],
         "characters": {
             "player": "monday-boy-car",
@@ -22,7 +22,7 @@
         "stage": "monday-void",
         "noteStyle": "funkin",
         "ratings": {
-            "hard": 7
+            "normal": 7
         },
         "previewEnd": 0
     },

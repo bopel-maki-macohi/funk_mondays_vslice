@@ -6,7 +6,7 @@
     "offsets": {},
     "playData": {
         "difficulties": [
-            "hard"
+            "normal"
         ],
         "characters": {
             "player": "monday-boy",
@@ -19,8 +19,8 @@
         "noteStyle": "funkin",
         "ratings": {
             "easy": 0,
-            "normal": 0,
-            "hard": 5
+            "hard": 0,
+            "normal": 5
         },
         "previewEnd": 0
     },

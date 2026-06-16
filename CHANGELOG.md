@@ -2,6 +2,7 @@
 
 - Added Assassination song
 
+- All songs are normal only now instead of hard only
 - Fixed Spooky Down South album
 - Re-exported Boy Atlas with Better Texture Atlas
 - Fixed Boy right miss animation
