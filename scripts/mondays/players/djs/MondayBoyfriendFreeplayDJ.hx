@@ -7,6 +7,7 @@ import funkin.data.freeplay.player.PlayerRegistry;
 import funkin.util.MathUtil;
 import flixel.tweens.FlxTween;
 import flixel.tweens.FlxEase;
+import funkin.data.song.SongTimeChange;
 
 using StringTools;
 
@@ -18,6 +19,8 @@ class MondayBoyfriendFreeplayDJ extends AnimateAtlasFreeplayDJ
 	var speakerY:Float = 0;
 
 	var speakerBack:Bool = false;
+
+	var internalConductor:Conductor;
 
 	public function new(x:Float, y:Float, characterId:String)
 	{
@@ -35,15 +38,18 @@ class MondayBoyfriendFreeplayDJ extends AnimateAtlasFreeplayDJ
 		speakerX = speaker.x;
 		speakerY = FlxG.height - speaker.height;
 
-		Conductor.instance.onBeatHit.add(onBeatHit);
+		internalConductor = new Conductor();
+		internalConductor.onBeatHit.add(onBeatHit);
 	}
 
 	function onBeatHit()
 	{
-		var beat = Conductor.instance.currentBeat;
+		var beat = internalConductor.currentBeat;
 
-		if (currentState == FreeplayDJState.Idle)
-			animation.play(playableCharData?.getAnimationPrefix('idle'));
+		// trace(beat);
+
+		if (currentState == FreeplayDJState.Idle && animation != null)
+			animation?.play(playableCharData?.getAnimationPrefix('idle'));
 	}
 
 	function onFrameChange(anim:String, frame:Int)
@@ -130,12 +136,49 @@ class MondayBoyfriendFreeplayDJ extends AnimateAtlasFreeplayDJ
 
 		speaker.x = MathUtil.smoothLerpPrecision(speaker.x, speakerX, event.elapsed, 0.4);
 		speaker.y = MathUtil.smoothLerpPrecision(speaker.y, speakerY, event.elapsed, 0.4);
+
+		if (internalConductor != null && FlxG.sound.music != null && internalConductor.currentTimeChange != null)
+			internalConductor.update(FlxG.sound?.music?.time ?? 0.0);
+	}
+
+	public override function destroy():Void
+	{
+		super.destroy();
+
+		// if (internalConductor != null)
+		// internalConductor.destroy();
 	}
 
 	/**
 	 * Called when a capsule is selected.
 	 */
-	public function onCapsuleSelected(event:CapsuleScriptEvent):Void {}
+	public function onCapsuleSelected(event:CapsuleScriptEvent):Void
+	{
+		super.onCapsuleSelected(event);
+
+		var diff:SongDifficulty = null;
+		var timeChanges:Array<SongTimeChange> = [];
+		var randomCapsule = event?.capsule?.freeplayData != null;
+
+		if (!randomCapsule)
+		{
+			diff = event.capsule.freeplayData?.data?.getDifficulty(event.difficultyId, event.variationId);
+
+			if (diff != null)
+				timeChanges = diff?.timeChanges;
+		}
+		else
+			timeChanges = [new SongTimeChange(0, 145)];
+
+		if (internalConductor != null)
+		{
+			// trace(diff);
+			// trace(timeChanges);
+
+			if (timeChanges != null && timeChanges.length > 0)
+				internalConductor.mapTimeChanges(timeChanges);
+		}
+	}
 
 	/**
 	 * Called when the current difficulty is changed.
@@ -152,6 +195,7 @@ class MondayBoyfriendFreeplayDJ extends AnimateAtlasFreeplayDJ
 	 */
 	public function onFreeplayIntroDone(event:FreeplayScriptEvent):Void
 	{
+		super.onFreeplayIntroDone(event);
 		speakerY = FlxG.height - speaker.height;
 	}
 
@@ -160,13 +204,13 @@ class MondayBoyfriendFreeplayDJ extends AnimateAtlasFreeplayDJ
 	 */
 	public function onFreeplayOutro(event:FreeplayScriptEvent):Void
 	{
+		super.onFreeplayOutro(event);
 		FlxTween.num(speakerX, -this.width * 1.6, 0.5, {ease: FlxEase.expoIn}, speakerXTween);
 	}
 
 	override function toCharSelect()
 	{
 		super.toCharSelect();
-
 		FlxTween.num(speakerY, -178 + speakerY, 0.8, {ease: FlxEase.backIn, startDelay: playableCharData?.getCharSelectTransitionDelay() ?? 0.25},
 			speakerYTween);
 	}
@@ -189,5 +233,8 @@ class MondayBoyfriendFreeplayDJ extends AnimateAtlasFreeplayDJ
 	/**
 	 * Called when Freeplay is closed.
 	 */
-	public function onFreeplayClose(event:FreeplayScriptEvent):Void {}
+	public function onFreeplayClose(event:FreeplayScriptEvent):Void
+	{
+		super.onFreeplayClose(event);
+	}
 }
