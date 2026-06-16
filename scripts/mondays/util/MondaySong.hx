@@ -15,6 +15,8 @@ class MondaySong extends Song
 	{
 		super(song);
 
+		_data.playData.album = 'monday';
+
 		reinitCamOffsets();
 	}
 

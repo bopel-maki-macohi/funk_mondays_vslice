@@ -1,10 +1,18 @@
 import funkin.play.character.MultiAnimateAtlasCharacter;
 
-class MondayGirlCharacter extends MultiAnimateAtlasCharacter
+class MondayGirlCarCharacter extends MondayGirlCharacter
 {
 	override public function new()
 	{
-		super('monday-girl');
+		super('-car');
+	}
+}
+
+class MondayGirlCharacter extends MultiAnimateAtlasCharacter
+{
+	override public function new(suffix = '')
+	{
+		super('monday-girl$suffix');
 	}
 
 	override function onCreate(event:ScriptEvent):Void

@@ -1,26 +1,30 @@
 {
     "version": "2.2.4",
-    "songName": "Spooky Down South",
+    "songName": "Assasination",
     "artist": "Maki",
     "charter": "Maki",
     "offsets": {},
     "playData": {
         "difficulties": [
+            "easy",
+            "normal",
             "hard"
         ],
         "characters": {
-            "player": "monday-boy",
+            "player": "monday-boy-car",
             "girlfriend": "monday-girl",
-            "opponent": "monday-skidoypumpi",
-            "opponentVocals": [],
-            "playerVocals": []
+            "opponent": "monday-sisian",
+            "opponentVocals": [
+                "sisian"
+            ],
+            "playerVocals": [
+                "bf"
+            ]
         },
         "stage": "monday-void",
         "noteStyle": "funkin",
         "ratings": {
-            "easy": 0,
-            "normal": 0,
-            "hard": 5
+            "hard": 7
         },
         "previewEnd": 0
     },
@@ -29,7 +33,7 @@
         {
             "t": 0,
             "b": 0,
-            "bpm": 122.08,
+            "bpm": 90,
             "bt": [
                 4,
                 4,
