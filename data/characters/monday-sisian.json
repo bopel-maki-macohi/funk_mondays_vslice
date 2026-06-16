@@ -43,28 +43,11 @@
 	},
 	"animations": [
 		{
-			"flipY": false,
-			"offsets": [
-				0,
-				0
-			],
-			"frameRate": 24,
 			"prefix": "Idle",
-			"animType": "framelabel",
-			"flipX": false,
-			"looped": false,
 			"name": "idle"
 		},
 		{
-			"flipY": false,
-			"offsets": [
-				0,
-				0
-			],
-			"frameRate": 24,
 			"prefix": "Idle",
-			"animType": "framelabel",
-			"flipX": false,
 			"looped": true,
 			"name": "idle-hold",
 			"frameIndices": [
@@ -74,6 +57,74 @@
 				15,
 				16,
 				17
+			]
+		},
+		{
+			"prefix": "Left",
+			"name": "singLEFT"
+		},
+		{
+			"prefix": "Down",
+			"name": "singDOWN"
+		},
+		{
+			"prefix": "Up",
+			"name": "singUP"
+		},
+		{
+			"prefix": "Right",
+			"name": "singRIGHT"
+		},
+		{
+			"prefix": "Left",
+			"name": "singLEFT-hold",
+			"looped": true,
+			"frameIndices": [
+				6,
+				7,
+				8,
+				9,
+				10,
+				11
+			]
+		},
+		{
+			"prefix": "Down",
+			"name": "singDOWN-hold",
+			"looped": true,
+			"frameIndices": [
+				6,
+				7,
+				8,
+				9,
+				10,
+				11
+			]
+		},
+		{
+			"prefix": "Up",
+			"name": "singUP-hold",
+			"looped": true,
+			"frameIndices": [
+				6,
+				7,
+				8,
+				9,
+				10,
+				11
+			]
+		},
+		{
+			"prefix": "Right",
+			"name": "singRIGHT-hold",
+			"looped": true,
+			"frameIndices": [
+				6,
+				7,
+				8,
+				9,
+				10,
+				11
 			]
 		}
 	]

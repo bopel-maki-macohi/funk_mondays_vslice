@@ -31,11 +31,16 @@ class MondayVoidStage extends Stage
 
 	function buildStage()
 	{
+		_data = _fetchData(id);
+
+		if (_data == null)
+			throw 'Could not find stage data for stage id: $id';
+
 		super.buildStage();
 
 		void = new StageProp();
 		void.makeSolidColor(Std.int(FlxG.width * 1.1), Std.int(FlxG.height * 1.1), FlxColor.fromString('0xFFFFFF'));
-		void.scale.set(FlxG.width * 1.1, FlxG.height * 1.1);
+		void.scale.set(FlxG.width * 2, FlxG.height * 2);
 		void.scrollFactor.set();
 		void.antialiasing = false;
 		void.active = false;
@@ -47,6 +52,8 @@ class MondayVoidStage extends Stage
 
 		switch (game.currentSong.songName)
 		{
+			case 'Assasination':
+				buildTrain();
 			case 'Spooky Down South':
 				buildSpookyPlace();
 			default:
@@ -55,6 +62,28 @@ class MondayVoidStage extends Stage
 		}
 
 		refresh();
+	}
+
+	function buildTrain()
+	{
+		this._data.cameraZoom = 0.8;
+
+		_data.characters.dad.position[0] -= 350;
+		_data.characters.dad.position[1] -= 100;
+
+		_data.characters.gf.position[0] += 350;
+		_data.characters.gf.position[1] -= 50;
+
+		_data.characters.bf.position[0] += 350;
+		_data.characters.bf.position[1] -= 50;
+
+		_data.characters.gf.cameraOffsets[0] -= 350;
+		_data.characters.gf.cameraOffsets[1] += 50;
+
+		var train:StageProp = makeBaseStageProp('onTrain/train');
+		train.scale.set(2, 2);
+		train.setPosition(0, 825);
+		addProp(train, 'train');
 	}
 
 	function buildSpookyPlace()
