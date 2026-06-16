@@ -1,27 +1,7 @@
 {
    "version": "1.0.2",
    "name": "Monday Void",
-   "props": [
-      {
-         "assetPath": "#FFFFFF",
-         "atlasSettings": null,
-         "isPixel": true,
-         "name": "void",
-         "position": [
-            -640,
-            -360
-         ],
-         "scale": [
-            2560,
-            1440
-         ],
-         "scroll": [
-            0,
-            0
-         ],
-         "startingAnimation": ""
-      }
-   ],
+   "props": [],
    "characters": {
       "bf": {
          "cameraOffsets": [
