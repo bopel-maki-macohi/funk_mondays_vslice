@@ -1,6 +1,7 @@
 # 0.2.0 (6/16/2026)
 
 - Added Assassination song
+- Monday Boy now is his own player
 
 - All songs are normal only now instead of hard only
 - Fixed Spooky Down South album
