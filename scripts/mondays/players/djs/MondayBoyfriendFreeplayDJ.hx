@@ -106,7 +106,8 @@ class MondayBoyfriendFreeplayDJ extends AnimateAtlasFreeplayDJ
 		}
 		else
 		{
-			trace('Finished ${name}');
+			trace('Finished ${name} : moving to idle');
+			currentState = FreeplayDJState.Idle;
 		}
 	}
 
@@ -178,6 +179,12 @@ class MondayBoyfriendFreeplayDJ extends AnimateAtlasFreeplayDJ
 			if (timeChanges != null && timeChanges.length > 0)
 				internalConductor.mapTimeChanges(timeChanges);
 		}
+
+		if (currentState == FreeplayDJState.Idle)
+		{
+			currentState = FreeplayDJState.Cartoon;
+			animation?.play(playableCharData?.getAnimationPrefix('switchSong'), true);
+		}
 	}
 
 	/**
@@ -205,7 +212,7 @@ class MondayBoyfriendFreeplayDJ extends AnimateAtlasFreeplayDJ
 	public function onFreeplayOutro(event:FreeplayScriptEvent):Void
 	{
 		super.onFreeplayOutro(event);
-		FlxTween.num(speakerX, -this.width * 1.6, 0.5, {ease: FlxEase.expoIn}, speakerXTween);
+		FlxTween.num(speakerX, -this.width * 1.8, 0.5, {ease: FlxEase.expoIn}, speakerXTween);
 	}
 
 	override function toCharSelect()
