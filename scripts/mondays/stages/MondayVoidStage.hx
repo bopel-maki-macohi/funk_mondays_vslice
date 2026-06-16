@@ -36,6 +36,7 @@ class MondayVoidStage extends Stage
 		void = new StageProp();
 		void.makeSolidColor(Std.int(FlxG.width * 1.1), Std.int(FlxG.height * 1.1), FlxColor.fromString('0xFFFFFF'));
 		void.scale.set(FlxG.width * 1.1, FlxG.height * 1.1);
+		void.scrollFactor.set();
 		void.antialiasing = false;
 		void.active = false;
 		addProp(void, 'stage');
