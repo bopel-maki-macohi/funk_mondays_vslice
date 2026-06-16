@@ -16,9 +16,16 @@ class MondayBoyfriendFreeplayDJ extends AnimateAtlasFreeplayDJ
 	var speakerX:Float = 0;
 	var speakerY:Float = 0;
 
+	var speakerBack:Bool = false;
+
 	public function new(x:Float, y:Float, characterId:String)
 	{
 		super(x, y, characterId);
+
+		animation.onFrameChange.add((name, number) ->
+		{
+			onFrameChange(name, number);
+		});
 
 		speaker = new FunkinSprite();
 		speaker.loadTexture('funk_mondays/freeplay/dj/speaker-boy');
@@ -28,12 +35,23 @@ class MondayBoyfriendFreeplayDJ extends AnimateAtlasFreeplayDJ
 		speakerY = FlxG.height - speaker.height;
 	}
 
+	function onFrameChange(anim:String, frame:Int)
+	{
+		// trace(anim + ' : $frame');
+
+		if (anim == playableCharData?.getAnimationPrefix('intro'))
+		{
+			speakerBack = (frame > 7 && frame < 13);
+		}
+	}
+
 	override function onFinishAnim(name:String):Void
 	{
 		if (name == playableCharData?.getAnimationPrefix('intro'))
 		{
 			currentState = (PlayerRegistry.instance.hasNewCharacter()) ? FreeplayDJState.Idle : FreeplayDJState.Idle;
 			onIntroDone.dispatch();
+			animation.play(playableCharData?.getAnimationPrefix('idle'));
 		}
 		else if (name == playableCharData?.getAnimationPrefix('idle'))
 		{
@@ -41,6 +59,8 @@ class MondayBoyfriendFreeplayDJ extends AnimateAtlasFreeplayDJ
 			// 	currentState = FreeplayDJState.IdleEasterEgg;
 			// else if (timeIdling >= IDLE_CARTOON_PERIOD)
 			// 	currentState = FreeplayDJState.Cartoon;
+			// else
+			animation.play(playableCharData?.getAnimationPrefix('idle'));
 		}
 		else if (name == playableCharData?.getAnimationPrefix('confirm'))
 		{
@@ -77,8 +97,17 @@ class MondayBoyfriendFreeplayDJ extends AnimateAtlasFreeplayDJ
 
 	public override function draw():Void
 	{
+		if (speakerBack)
+			drawSpeaker();
+
 		super.draw();
 
+		if (!speakerBack)
+			drawSpeaker();
+	}
+
+	function drawSpeaker()
+	{
 		if (speaker != null && speaker.visible)
 		{
 			speaker.cameras = _cameras;
