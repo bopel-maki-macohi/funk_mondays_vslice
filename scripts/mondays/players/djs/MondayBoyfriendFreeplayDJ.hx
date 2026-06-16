@@ -7,6 +7,7 @@ import funkin.data.freeplay.player.PlayerRegistry;
 import funkin.util.MathUtil;
 import flixel.tweens.FlxTween;
 import flixel.tweens.FlxEase;
+import funkin.data.song.SongData;
 import funkin.data.song.SongTimeChange;
 
 using StringTools;
@@ -157,19 +158,28 @@ class MondayBoyfriendFreeplayDJ extends AnimateAtlasFreeplayDJ
 	{
 		super.onCapsuleSelected(event);
 
+		var song:SongData = null;
 		var diff:SongDifficulty = null;
 		var timeChanges:Array<SongTimeChange> = [];
 		var randomCapsule = event?.capsule?.freeplayData != null;
 
 		if (!randomCapsule)
 		{
-			diff = event.capsule.freeplayData?.data?.getDifficulty(event.difficultyId, event.variationId);
+			song = event.capsule.freeplayData?.data;
+			diff = song?.getDifficulty(event.difficultyId, event.variationId);
 
 			if (diff != null)
 				timeChanges = diff?.timeChanges;
+
+			_data.bgAsset = 'funk_mondays/freeplay/dj/boy/freeplayBG-${song.id}';
 		}
 		else
+		{
 			timeChanges = [new SongTimeChange(0, 145)];
+
+			// multiple random ones?
+			_data.bgAsset = 'funk_mondays/freeplay/dj/boy/freeplayBG-random';
+		}
 
 		if (internalConductor != null)
 		{

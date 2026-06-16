@@ -1,0 +1,13 @@
+Open desired image in paint.net
+
+- Add Noise
+    - Intensity : 93
+    - Color Saturation : 0
+    - Coverage : 100
+
+- Hue / Saturation
+    - Lightness : -50
+
+- Crystalize
+    - Cell Size : 8
+    - Quality : 1
