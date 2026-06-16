@@ -61,14 +61,14 @@ class MondayVoidStage extends Stage
 		this._data.cameraZoom = 0.85;
 
 		var floor:StageProp = makeBaseStageProp('spookyPlace/floor');
-		floor.scale.set(1.5, 1.5);
-		floor.setPosition(0, 725);
+		floor.scale.set(2, 2);
+		floor.setPosition(0, 825);
 		addProp(floor, 'floor');
 
 		var window:StageProp = makeBaseStageProp('spookyPlace/window');
 		// window.scale.set(1.5, 1.5);
 		window.setPosition(0, 50);
-		addProp(window, 'floor');
+		addProp(window, 'window');
 
 		var staircase:StageProp = makeBaseStageProp('spookyPlace/staircase');
 		staircase.scale.set(2, 2);
@@ -76,7 +76,7 @@ class MondayVoidStage extends Stage
 		staircase.alpha = 0.5;
 		staircase.zIndex = 400;
 		staircase.scrollFactor.set(0.5, 0.5);
-		addProp(staircase, 'floor');
+		addProp(staircase, 'staircase');
 
 		void.color = floor.color = window.color = staircase.color = 0x888888;
 	}
