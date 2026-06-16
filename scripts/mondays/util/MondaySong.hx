@@ -15,12 +15,9 @@ class MondaySong extends Song
 	{
 		super(song);
 
-		if (_metadata != null)
-		{
-			for (vari => diff in difficulties)
-				for (id => ddiff in diff)
-					ddiff.album = 'monday';
-		}
+		for (vari => diff in difficulties)
+			for (id => ddiff in diff)
+				ddiff.album = 'monday';
 
 		reinitCamOffsets();
 	}
