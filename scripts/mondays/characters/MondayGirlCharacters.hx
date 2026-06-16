@@ -4,15 +4,21 @@ class MondayGirlCarCharacter extends MondayGirlCharacter
 {
 	override public function new()
 	{
-		super('-car');
+		super('monday-girl-car');
 	}
+
 }
 
 class MondayGirlCharacter extends MultiAnimateAtlasCharacter
 {
-	override public function new(suffix = '')
+	override public function new(char:String = 'monday-girl')
 	{
-		super('monday-girl$suffix');
+		char ??= 'monday-girl';
+
+		if (char == 'UNKNOWN')
+			char = 'monday-girl';
+
+		super(char);
 	}
 
 	override function onCreate(event:ScriptEvent):Void
