@@ -14,6 +14,7 @@ class MondayUI
 	public static var isDownscroll(get, never):Bool;
 
 	public static var missesText:FlxBitmapText = null;
+	public static var comboText:FlxBitmapText = null;
 
 	static function get_isDownscroll():Bool
 	{
@@ -26,8 +27,13 @@ class MondayUI
 			return;
 
 		missesText.text = 'Misses: ${Highscore.tallies.missed}';
+		comboText.text = 'Combo: ${Highscore.tallies.combo} (Max: ${Highscore.tallies.maxCombo})';
+
+		comboText.x = FlxG.width - comboText.width - 8;
+		comboText.y = (!isDownscroll) ? FlxG.height - comboText.height - 8 : 8 + missesText.height + comboText.height;
+
 		missesText.x = FlxG.width - missesText.width - 8;
-		missesText.y = (!isDownscroll) ? FlxG.height - missesText.height - 8 : 8 + missesText.height;
+		missesText.y = (!isDownscroll) ? comboText.y - missesText.height : 8 + missesText.height;
 
 		PlayState.instance.scoreText.x = FlxG.width - PlayState.instance.scoreText.width - 8;
 		PlayState.instance.scoreText.y = (!isDownscroll) ? missesText.y - missesText.height : 8;
@@ -52,10 +58,10 @@ class MondayUI
 	{
 		PlayState.instance.healthBarBG.visible = false;
 		PlayState.instance.healthBar.visible = false;
-		
+
 		if (PlayState.instance.iconP1 != null)
 			PlayState.instance.iconP1.visible = false;
-		
+
 		if (PlayState.instance.iconP2 != null)
 			PlayState.instance.iconP2.visible = false;
 
@@ -70,40 +76,47 @@ class MondayUI
 
 		var opponentStrumline:FlxSprite = PlayState.instance.opponentStrumline;
 		if (opponentStrumline != null)
-		{
 			for (arrow in opponentStrumline.members)
 				arrow.visible = false;
-		}
 
 		if (Preferences.controlsScheme == "Arrows" && !ControlsHandler.usingExternalInputDevice)
 			return;
 
 		var playerStrumline:FlxSprite = PlayState.instance.playerStrumline;
 		if (playerStrumline != null)
-		{
 			playerStrumline.x = FlxG.width / 2 - playerStrumline.width / 2;
-		}
 
-		if (missesText != null)
-		{
-			PlayState.instance.remove(missesText);
-			missesText.destroy();
-			missesText = null;
-		}
-
-		missesText = new FlxBitmapText(0, 0, '', FlxBitmapFont.fromAngelCode(Paths.font("vcr-bmp.png"), Paths.font("vcr-bmp.fnt")));
-		missesText.alignment = PlayState.instance.scoreText.alignment;
-		missesText.borderStyle = PlayState.instance.scoreText.borderStyle;
-		missesText.borderColor = PlayState.instance.scoreText.borderColor;
-		missesText.letterSpacing = PlayState.instance.scoreText.letterSpacing;
-		missesText.scrollFactor = PlayState.instance.scoreText.scrollFactor;
-		missesText.scale.set(2, 2);
-		missesText.cameras = PlayState.instance.scoreText.cameras;
-		missesText.wordWrap = PlayState.instance.scoreText.wordWrap;
-		missesText.antialiasing = PlayState.instance.scoreText.antialiasing;
-		missesText.zIndex = PlayState.instance.scoreText.zIndex + 1;
+		missesText = makeExtraUIText(missesText);
+		comboText = makeExtraUIText(comboText);
 
 		PlayState.instance.add(missesText);
+		PlayState.instance.add(comboText);
 		PlayState.instance.refresh();
+	}
+
+	static function makeExtraUIText(baseText:FlxBitmapText)
+	{
+		var newText = baseText;
+
+		if (newText != null)
+		{
+			PlayState.instance.remove(newText);
+			newText.destroy();
+			newText = null;
+		}
+
+		newText = new FlxBitmapText(0, 0, '', FlxBitmapFont.fromAngelCode(Paths.font("vcr-bmp.png"), Paths.font("vcr-bmp.fnt")));
+		newText.alignment = PlayState.instance.scoreText.alignment;
+		newText.borderStyle = PlayState.instance.scoreText.borderStyle;
+		newText.borderColor = PlayState.instance.scoreText.borderColor;
+		newText.letterSpacing = PlayState.instance.scoreText.letterSpacing;
+		newText.scrollFactor = PlayState.instance.scoreText.scrollFactor;
+		newText.scale.set(2, 2);
+		newText.cameras = PlayState.instance.scoreText.cameras;
+		newText.wordWrap = PlayState.instance.scoreText.wordWrap;
+		newText.antialiasing = PlayState.instance.scoreText.antialiasing;
+		newText.zIndex = PlayState.instance.scoreText.zIndex + 1;
+
+		return newText;
 	}
 }
