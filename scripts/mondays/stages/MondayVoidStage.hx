@@ -77,6 +77,8 @@ class MondayVoidStage extends Stage
 		staircase.zIndex = 400;
 		staircase.scrollFactor.set(0.5, 0.5);
 		addProp(staircase, 'floor');
+
+		void.color = floor.color = window.color = staircase.color = 0x888888;
 	}
 
 	function buildMondayStage()
