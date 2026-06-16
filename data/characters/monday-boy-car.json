@@ -1,0 +1,230 @@
+{
+	"renderType": "multianimateatlas",
+	"offsets": [
+		0,
+		0
+	],
+	"applyStageMatrix": false,
+	"startingAnimation": "idle",
+	"death": {
+		"cameraOffsets": [
+			0,
+			0
+		]
+	},
+	"healthIcon": {
+		"offsets": [
+			0,
+			0
+		],
+		"id": "monday-boy",
+		"flipX": false,
+		"isPixel": false,
+		"scale": 1
+	},
+	"assetPath": "funk_mondays/characters/boy-car",
+	"version": "1.0.0",
+	"danceEvery": 1,
+	"scale": 1,
+	"name": "Monday Boy (Car)",
+	"flipX": true,
+	"cameraOffsets": [
+		0,
+		0
+	],
+	"isPixel": false,
+	"singTime": 8,
+	"atlasSettings": {
+		"applyStageMatrix": false,
+		"useRenderTexture": false,
+		"filterQuality": 1,
+		"cacheOnLoad": false,
+		"swfMode": true
+	},
+	"animations": [
+		{
+			"prefix": "Idle",
+			"name": "idle"
+		},
+		{
+			"prefix": "Idle",
+			"name": "idle-hold",
+			"looped": true,
+			"frameIndices": [
+				12,
+				13,
+				14,
+				15,
+				16,
+				17
+			]
+		},
+		{
+			"prefix": "Left",
+			"name": "singLEFT"
+		},
+		{
+			"prefix": "Down",
+			"name": "singDOWN"
+		},
+		{
+			"prefix": "Up",
+			"name": "singUP"
+		},
+		{
+			"prefix": "Right",
+			"name": "singRIGHT"
+		},
+		{
+			"prefix": "Left Miss",
+			"name": "singLEFTmiss"
+		},
+		{
+			"prefix": "Down Miss",
+			"name": "singDOWNmiss"
+		},
+		{
+			"prefix": "Up Miss",
+			"name": "singUPmiss"
+		},
+		{
+			"prefix": "Right Miss",
+			"name": "singRIGHTmiss"
+		},
+		{
+			"prefix": "Left",
+			"name": "singLEFT-hold",
+			"looped": true,
+			"frameIndices": [
+				6,
+				7,
+				8,
+				9,
+				10,
+				11
+			]
+		},
+		{
+			"prefix": "Down",
+			"name": "singDOWN-hold",
+			"looped": true,
+			"frameIndices": [
+				6,
+				7,
+				8,
+				9,
+				10,
+				11
+			]
+		},
+		{
+			"prefix": "Up",
+			"name": "singUP-hold",
+			"looped": true,
+			"frameIndices": [
+				6,
+				7,
+				8,
+				9,
+				10,
+				11
+			]
+		},
+		{
+			"prefix": "Right",
+			"name": "singRIGHT-hold",
+			"looped": true,
+			"frameIndices": [
+				6,
+				7,
+				8,
+				9,
+				10,
+				11
+			]
+		},
+		{
+			"prefix": "Left Miss",
+			"name": "singLEFTmiss-hold",
+			"looped": true,
+			"frameIndices": [
+				6,
+				7,
+				8,
+				9,
+				10,
+				11
+			]
+		},
+		{
+			"prefix": "Down Miss",
+			"name": "singDOWNmiss-hold",
+			"looped": true,
+			"frameIndices": [
+				6,
+				7,
+				8,
+				9,
+				10,
+				11
+			]
+		},
+		{
+			"prefix": "Up Miss",
+			"name": "singUPmiss-hold",
+			"looped": true,
+			"frameIndices": [
+				6,
+				7,
+				8,
+				9,
+				10,
+				11
+			]
+		},
+		{
+			"prefix": "Right Miss",
+			"name": "singRIGHTmiss-hold",
+			"looped": true,
+			"frameIndices": [
+				6,
+				7,
+				8,
+				9,
+				10,
+				11
+			]
+		},
+		{
+			"assetPath": "funk_mondays/characters/boy-death",
+			"prefix": "firstDeath",
+			"name": "firstDeath",
+			"offsets": [
+				-4,
+				-15
+			]
+		},
+		{
+			"assetPath": "funk_mondays/characters/boy-death",
+			"prefix": "firstDeath",
+			"frameIndices": [
+				23
+			],
+			"name": "deathLoop",
+			"looped": true,
+			"offsets": [
+				-4,
+				-15
+			]
+		},
+		{
+			"assetPath": "funk_mondays/characters/boy-death",
+			"prefix": "deathConfirm",
+			"name": "deathConfirm",
+			"offsets": [
+				-4,
+				-15
+			]
+		}
+	]
+}
