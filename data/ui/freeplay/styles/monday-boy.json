@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "bgAsset": "funk_mondays/freeplay/freeplayBG-boy",
+  "bgAsset": "funk_mondays/freeplay/dj/boy/freeplayBG",
   "selectorAsset": "freeplay/freeplaySelector/freeplaySelector",
   "numbersAsset": "digital_numbers",
   "capsuleAsset": "freeplay/freeplayCapsule/capsule/freeplayCapsule",

@@ -32,7 +32,7 @@ class MondayBoyfriendFreeplayDJ extends AnimateAtlasFreeplayDJ
 		});
 
 		speaker = new FunkinSprite();
-		speaker.loadTexture('funk_mondays/freeplay/dj/speaker-boy');
+		speaker.loadTexture('funk_mondays/freeplay/dj/boy/speaker');
 		speaker.y = FlxG.height - speaker.height;
 
 		speakerX = speaker.x;
@@ -124,7 +124,7 @@ class MondayBoyfriendFreeplayDJ extends AnimateAtlasFreeplayDJ
 
 	function drawSpeaker()
 	{
-		if (speaker != null && speaker.visible)
+		if (speaker != null && speaker.visible && this.visible)
 		{
 			speaker.cameras = _cameras;
 			speaker.draw();

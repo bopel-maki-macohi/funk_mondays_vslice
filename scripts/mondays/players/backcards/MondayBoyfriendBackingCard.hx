@@ -2,6 +2,7 @@ import funkin.ui.freeplay.BGScrollingText;
 import funkin.ui.freeplay.FreeplayState;
 import funkin.ui.freeplay.backcards.BackingCard;
 import flixel.FlxSprite;
+import funkin.graphics.FunkinSprite;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxSpriteUtil;
@@ -93,7 +94,7 @@ class MondayBoyfriendBackingCard extends BackingCard
 		funnyScroll2.visible = false;
 		funnyScroll3.visible = false;
 
-		funnyScroll.funnyColor = 0xFFFFFFFF;
+		funnyScroll.funnyColor = 0xFF000000;
 		funnyScroll.speed = -5;
 		add(funnyScroll);
 
@@ -117,8 +118,11 @@ class MondayBoyfriendBackingCard extends BackingCard
 		glow.visible = false;
 
 		add(cardGlow);
+
+		pinkBack.color = 0xFF000000;
 	}
 
+	
 	var beatFreq:Int = 1;
 	var beatFreqList:Array<Int> = [1, 2, 4, 8];
 
@@ -147,6 +151,7 @@ class MondayBoyfriendBackingCard extends BackingCard
 		// grpTxtScrolls.visible = true;
 		glowDark.visible = true;
 		glow.visible = true;
+		pinkBack.color = 0xFFFFFFFF;
 	}
 
 	public override function confirm():Void

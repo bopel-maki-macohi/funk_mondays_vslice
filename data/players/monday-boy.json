@@ -10,7 +10,7 @@
   "freeplayStyle": "monday-boy",
   "stickerPack": "standard-bf",
   "freeplayDJ": {
-    "assetPath": "funk_mondays/freeplay/dj/dj-boy",
+    "assetPath": "funk_mondays/freeplay/dj/boy/dj",
     "scriptClass": "MondayBoyfriendFreeplayDJ",
     "fistPump": {
       "introStartFrame": 0,
