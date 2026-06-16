@@ -1,5 +1,7 @@
 # 0.1.2 (6/15/2026)
 
+- Re-exported Boy Atlas with Better Texture Atlas
+- Fixed Boy right miss animation
 - Changed "Misses" to "Combo Breaks"
     - Changed the counter to fit
 
