@@ -11,7 +11,7 @@
   "stickerPack": "standard-bf",
   "freeplayDJ": {
     "assetPath": "freeplay/freeplay-boyfriend",
-    "scriptClass": "BoyfriendFreeplayDJ",
+    "scriptClass": "MondayBoyfriendFreeplayDJ",
     "fistPump": {
       "introStartFrame": 0,
       "introEndFrame": 4,
@@ -41,38 +41,8 @@
         "animType": "framelabel"
       },
       {
-        "name": "idleEasterEgg",
-        "prefix": "AFK",
-        "animType": "framelabel"
-      },
-      {
         "name": "confirm",
         "prefix": "Confirm",
-        "animType": "framelabel"
-      },
-      {
-        "name": "fistPump",
-        "prefix": "Fist Pump",
-        "animType": "framelabel"
-      },
-      {
-        "name": "loss",
-        "prefix": "Fist Pump Loss",
-        "animType": "framelabel"
-      },
-      {
-        "name": "charSelect",
-        "prefix": "To Character Select",
-        "animType": "framelabel"
-      },
-      {
-        "name": "cartoon",
-        "prefix": "Watching TV",
-        "animType": "framelabel"
-      },
-      {
-        "name": "newUnlock",
-        "prefix": "New Unlock",
         "animType": "framelabel"
       }
     ]

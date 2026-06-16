@@ -1,49 +1,46 @@
 import funkin.audio.FunkinSound;
+import funkin.graphics.FunkinSprite;
 import funkin.ui.freeplay.dj.AnimateAtlasFreeplayDJ;
 import funkin.ui.freeplay.dj.FreeplayDJState;
 import funkin.data.freeplay.player.PlayerRegistry;
+import funkin.util.MathUtil;
+import flixel.tweens.FlxTween;
+import flixel.tweens.FlxEase;
 
 using StringTools;
 
 class MondayBoyfriendFreeplayDJ extends AnimateAtlasFreeplayDJ
 {
-	final CARTOON_LIST:Array<String> = Assets.list().filter((path) -> return path.startsWith("assets/sounds/cartoons/"));
-	final CARTOON_SYMBOL:String = 'Boyfriend DJ watchin tv OG';
+	var speaker:FunkinSprite;
 
-	var currentCartoonFrame:Int = 60;
-	var cartoonSnd:Null<FunkinSound> = null;
-	var playingCartoon:Bool = false;
+	var speakerX:Float = 0;
+	var speakerY:Float = 0;
 
 	public function new(x:Float, y:Float, characterId:String)
 	{
 		super(x, y, characterId);
-		this.cartoonSnd?.destroy();
 
-		animation.onFrameChange.add((name, number) ->
-		{
-			if (name == playableCharData.getAnimationPrefix('cartoon'))
-			{
-				if (number == getCartoonFrame('REMOTE_CLICK'))
-					FunkinSound.playOnce(Paths.sound('remote_click'));
-				if (number == getCartoonFrame('TV_SOUND'))
-					_runTVLogic();
-			}
-		});
+		speaker = new FunkinSprite();
+		speaker.loadTexture('funk_mondays/freeplay/dj/speaker-boy');
+		speaker.y = FlxG.height - speaker.height;
+
+		speakerX = speaker.x;
+		speakerY = FlxG.height - speaker.height;
 	}
 
 	override function onFinishAnim(name:String):Void
 	{
 		if (name == playableCharData?.getAnimationPrefix('intro'))
 		{
-			currentState = (PlayerRegistry.instance.hasNewCharacter()) ? FreeplayDJState.NewUnlock : FreeplayDJState.Idle;
+			currentState = (PlayerRegistry.instance.hasNewCharacter()) ? FreeplayDJState.Idle : FreeplayDJState.Idle;
 			onIntroDone.dispatch();
 		}
 		else if (name == playableCharData?.getAnimationPrefix('idle'))
 		{
-			if (timeIdling >= IDLE_EGG_PERIOD && !seenIdleEasterEgg)
-				currentState = FreeplayDJState.IdleEasterEgg;
-			else if (timeIdling >= IDLE_CARTOON_PERIOD)
-				currentState = FreeplayDJState.Cartoon;
+			// if (timeIdling >= IDLE_EGG_PERIOD && !seenIdleEasterEgg)
+			// 	currentState = FreeplayDJState.IdleEasterEgg;
+			// else if (timeIdling >= IDLE_CARTOON_PERIOD)
+			// 	currentState = FreeplayDJState.Cartoon;
 		}
 		else if (name == playableCharData?.getAnimationPrefix('confirm'))
 		{
@@ -64,21 +61,6 @@ class MondayBoyfriendFreeplayDJ extends AnimateAtlasFreeplayDJ
 			// trace('Finished loss reaction');
 			currentState = FreeplayDJState.Idle;
 		}
-		else if (name == playableCharData?.getAnimationPrefix('cartoon'))
-		{
-			// trace('Finished cartoon');
-
-			this.currentCartoonFrame = FlxG.random.bool(33) ? getCartoonFrame('BLINK') : getCartoonFrame('LOOP');
-
-			// Character switches channels when the video ends, or at a 10% chance each time his idle loops.
-			if (FlxG.random.bool(10))
-			{
-				this.currentCartoonFrame = getCartoonFrame('CHANGE_CHANNEL');
-			}
-
-			var animationPrefix:String = playableCharData.getAnimationPrefix('cartoon');
-			playFlashAnimation(animationPrefix, true, false, false, this.currentCartoonFrame);
-		}
 		else if (name == playableCharData?.getAnimationPrefix('newUnlock'))
 		{
 			// Animation should loop.
@@ -93,100 +75,81 @@ class MondayBoyfriendFreeplayDJ extends AnimateAtlasFreeplayDJ
 		}
 	}
 
-	function _runTVLogic():Void
+	public override function draw():Void
 	{
-		if (cartoonSnd == null)
+		super.draw();
+
+		if (speaker != null && speaker.visible)
 		{
-			// tv is OFF, but getting turned on
-			FunkinSound.playOnce(Paths.sound('tv_on'), 1.0, () ->
-			{
-				loadCartoon();
-			});
-		}
-		else
-		{
-			// plays it smidge after the click
-			FunkinSound.playOnce(Paths.sound('channel_switch'), 1.0, () ->
-			{
-				loadCartoon();
-			});
+			speaker.cameras = _cameras;
+			speaker.draw();
 		}
 	}
 
-	public function getCartoonFrame(frameLabel:String):Int
+	public function onUpdate(event:UpdateScriptEvent):Void
 	{
-		var cartoonSymbol:Null<SymbolItem> = this.library.getSymbol(CARTOON_SYMBOL);
-		var cartoonFrame:Null<Frame> = this.getFrameLabel(frameLabel, cartoonSymbol.timeline);
+		super.onUpdate(event);
 
-		return cartoonFrame.index;
+		speaker.x = MathUtil.smoothLerpPrecision(speaker.x, speakerX, event.elapsed, 0.4);
+		speaker.y = MathUtil.smoothLerpPrecision(speaker.y, speakerY, event.elapsed, 0.4);
 	}
 
-	public function loadCartoon():Void
+	/**
+	 * Called when a capsule is selected.
+	 */
+	public function onCapsuleSelected(event:CapsuleScriptEvent):Void {}
+
+	/**
+	 * Called when the current difficulty is changed.
+	 */
+	public function onDifficultySwitch(event:CapsuleScriptEvent):Void {}
+
+	/**
+	 * Called when a song is selected.
+	 */
+	public function onSongSelected(event:CapsuleScriptEvent):Void {}
+
+	/**
+	 * Called when the intro for Freeplay finishes.
+	 */
+	public function onFreeplayIntroDone(event:FreeplayScriptEvent):Void
 	{
-		playingCartoon = true;
-
-		if (cartoonSnd != null)
-		{
-			cartoonSnd.stop();
-			cartoonSnd = null;
-		}
-
-		cartoonSnd = FunkinSound.load(Paths.sound(getRandomFlashToon()), 1.0, false, true, true, false, () ->
-		{
-			var animationPrefix:String = playableCharData.getAnimationPrefix('cartoon');
-			if (animationPrefix != null)
-				playFlashAnimation(animationPrefix, true, false, false, getCartoonFrame('CHANGE_CHANNEL'));
-		});
-
-		// Fade out music to 40% volume over 1 second.
-		// This helps make the TV a bit more audible.
-		FlxG.sound.music.fadeOut(1.0, 0.1);
-
-		// Play the cartoon at a random time between the start and 5 seconds from the end.
-		if (cartoonSnd != null)
-			cartoonSnd.time = FlxG.random.float(0, Math.max(cartoonSnd.length - (5 * Constants.MS_PER_SEC), 0.0));
+		speakerY = FlxG.height - speaker.height;
 	}
 
-	function getRandomFlashToon():String
+	/**
+	 * Called when the Freeplay outro begins.
+	 */
+	public function onFreeplayOutro(event:FreeplayScriptEvent):Void
 	{
-		var randomFile:String = CARTOON_LIST[FlxG.random.int(0, CARTOON_LIST.length - 1)];
-
-		// Strip folder prefix
-		randomFile = randomFile.replace("assets/sounds/", "");
-		// Strip file extension
-		randomFile = randomFile.substring(0, randomFile.length - 4);
-
-		return randomFile;
+		FlxTween.num(speakerX, -this.width * 1.6, 0.5, {ease: FlxEase.expoIn}, speakerXTween);
 	}
 
-	public override function getMusicPreviewMult():Float
-	{
-		return playingCartoon ? 0.15 : 1;
-	}
-
-	public override function onConfirm():Void
-	{
-		super.onConfirm();
-		if (this.cartoonSnd != null)
-			this.cartoonSnd.fadeOut(.25, 0);
-	}
-
-	public override function toCharSelect():Void
+	override function toCharSelect()
 	{
 		super.toCharSelect();
-		if (this.cartoonSnd != null)
-			this.cartoonSnd.fadeOut(.25, 0);
+
+		FlxTween.num(speakerY, -178 + speakerY, 0.8, {ease: FlxEase.backIn, startDelay: playableCharData?.getCharSelectTransitionDelay() ?? 0.25},
+			speakerYTween);
 	}
 
-	public override function destroy():Void
+	function speakerXTween(num:Float)
 	{
-		super.destroy();
-
-		if (this.cartoonSnd != null)
-		{
-			this.cartoonSnd.stop();
-			this.cartoonSnd.destroy();
-			this.cartoonSnd = null;
-		}
+		speakerX = num;
 	}
+
+	function speakerYTween(num:Float)
+	{
+		speakerY = num;
+	}
+
+	function speakerPosTweenDone(tween:FlxTween)
+	{
+		speakerY = FlxG.height - speaker.height;
+	}
+
+	/**
+	 * Called when Freeplay is closed.
+	 */
+	public function onFreeplayClose(event:FreeplayScriptEvent):Void {}
 }
