@@ -26,7 +26,7 @@ class MondayUI
 		if (missesText == null)
 			return;
 
-		missesText.text = 'Misses: ${Highscore.tallies.missed}';
+		missesText.text = 'Combo Breaks: ${Highscore.tallies.bad + Highscore.tallies.shit + Highscore.tallies.missed}';
 		comboText.text = 'Combo: ${Highscore.tallies.combo} (Max: ${Highscore.tallies.maxCombo})';
 
 		comboText.x = FlxG.width - comboText.width - 8;
